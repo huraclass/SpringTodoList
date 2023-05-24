@@ -18,7 +18,7 @@ class ShoppingApplicationTests {
     @Test
     void te() {
         Person person = new Person();
-        person.setAge(17);
+        person.setAge(18);
         person.setName("marin");
 
         mapper.insertPerson(person);

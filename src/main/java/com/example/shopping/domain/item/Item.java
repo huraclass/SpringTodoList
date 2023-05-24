@@ -1,8 +1,10 @@
 package com.example.shopping.domain.item;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class Item {
 
     private Long id;
