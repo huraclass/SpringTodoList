@@ -23,7 +23,6 @@ import java.util.List;
 public class ItemController {
 
     private final ItemRepository itemRepository;
-    private final BoardMapper mapper;
 
     @GetMapping
     public String items(Model model) {
@@ -47,7 +46,6 @@ public class ItemController {
 
     @PostMapping("/add")
     public String addItem(@Validated @ModelAttribute("item") ItemSaveForm form, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
-
         //특정 필드 예외가 아닌 전체 예외
         if (form.getPrice() != null && form.getQuantity() != null) {
             int resultPrice = form.getPrice() * form.getQuantity();
@@ -60,6 +58,7 @@ public class ItemController {
             log.info("errors={}", bindingResult);
             return "items/addForm";
         }
+
 
         //성공 로직
         Item item = new Item();

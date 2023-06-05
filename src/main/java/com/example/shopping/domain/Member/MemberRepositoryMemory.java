@@ -7,11 +7,23 @@ import java.util.*;
 
 @Slf4j
 public class MemberRepositoryMemory implements MemberRepository{
+    MemberRepositoryMemory() {
+        init();
+    }
+
+    private void init() {
+        Member member = new Member();
+        member.setLoginId("test");
+        member.setPassword("test!");
+        member.setName("tester");
+        this.save(member);
+    }
     private static Map<Long, Member> store = new HashMap<>();
 
     private static long sequence = 0l;
 
     public Member save(Member member) {
+        Member encryptionMember = Member.encryptionPassword(member);
         member.setId(++sequence);
         log.info("save : member = {}", member);
         store.put(member.getId(), member);
@@ -23,6 +35,8 @@ public class MemberRepositoryMemory implements MemberRepository{
     }
 
     public Optional<Member> findByLoginId(String loginId) {
+        List<Member> members = findAll();
+        members.forEach(member -> log.info("member : {}", member));
         return findAll().stream()
                 .filter(member -> member.getLoginId().equals(loginId))
                 .findFirst();

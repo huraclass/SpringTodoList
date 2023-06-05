@@ -4,6 +4,7 @@ import com.example.shopping.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.Optional;
 
 @Slf4j
 @Repository
+@Transactional
 @RequiredArgsConstructor
 public class MemberRepositoryDBMS implements MemberRepository{
 
